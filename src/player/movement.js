@@ -1,11 +1,12 @@
 import { store } from '../config/store';
-import { SPRITE_SIZE, MOVEMENT_KEY_MAP, MAP_WIDTH, MAP_HEIGHT, PLAYER_MOVEMENT_SPEED } from '../config/constansts';
-import { interval, timer } from 'rxjs';
+import { SPRITE_SIZE, MOVEMENT_KEY_MAP, PLAYER_MOVEMENT_SPEED } from '../config/constansts';
+import { timer } from 'rxjs';
 
 // keep the player on the map.
 const observeBoundaries = (oldPos, newPos) => {
-  return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - SPRITE_SIZE) &&
-         (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - SPRITE_SIZE);
+  const map = store.getState().map.size;
+  return (newPos[0] >= 0 && newPos[0] <= map.width - SPRITE_SIZE) &&
+         (newPos[1] >= 0 && newPos[1] <= map.height - SPRITE_SIZE);
 }
 
 // only allow the player to stand on tiles that have a value less than 5
@@ -68,10 +69,11 @@ const attemptMove = (direction) => {
   }
 }
 
-const handleKeyDown = (keyCode) => {
+const handleKeyDown = (keyCode, e) => {
   // will be undefined when an arrow key hasn't been pressed.
   const moveDirection = MOVEMENT_KEY_MAP[keyCode];
   if (moveDirection) {
+    e.preventDefault();
     return attemptMove(moveDirection);
   }
   return console.log(keyCode);
@@ -82,6 +84,7 @@ const enoughTimePassedForMovement = (lastMovementTime) => {
   return currentTime.getTime() > lastMovementTime.getTime() + PLAYER_MOVEMENT_SPEED / 1.1
 }
 
+// TODO simplify this so that it's easier to reason about
 const handleMovement = (player) => {
   let currentKey = null;
   let keyUp = null;
@@ -91,11 +94,12 @@ const handleMovement = (player) => {
 
   // add the event listener handling user input
   window.addEventListener('keydown', (e) => {
+    // TODO we don't want to prevent all keys defualt behavior.
     currentKey = e.keyCode;
     if(!sub) {
       sub = movementInterval.subscribe(() => {
         if (enoughTimePassedForMovement(lastMovementTime) ) {
-          handleKeyDown(currentKey);
+          handleKeyDown(currentKey, e);
           // set the last movement time for comparison
           lastMovementTime = new Date();
         }

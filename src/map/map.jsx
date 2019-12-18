@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from '../config/constansts';
+import { SPRITE_SIZE } from '../config/constansts';
 
 import './map.css';
 
@@ -36,11 +36,11 @@ const MapRow = ({ tiles }) => (
   </div>
 );
 
-const MapBlock = ({tiles}) => (
+const MapBlock = ({tiles, size}) => (
   <div
     style={{
-      width: `${MAP_WIDTH}px`,
-      height: `${MAP_HEIGHT}px`,
+      width: `${size.width}px`,
+      height: `${size.height}px`,
     }}>
     {
       tiles.map(row => <MapRow tiles={row} />)
@@ -49,7 +49,7 @@ const MapBlock = ({tiles}) => (
 );
 
 const mapStateToProps = (state) => ({
-  tiles: state.map.tiles,
+  ...state.map,
 });
 
 const Map = connect(mapStateToProps)(MapBlock);

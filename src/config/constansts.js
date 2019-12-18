@@ -1,8 +1,6 @@
 import player_walk from '../player/person_0.svg';
 
 export const SPRITE_SIZE = 124;
-export const MAP_HEIGHT = SPRITE_SIZE * 4;
-export const MAP_WIDTH = SPRITE_SIZE * 5;
 // time between movement in ms.
 export const PLAYER_MOVEMENT_SPEED = 350;
 
