@@ -1,6 +1,6 @@
 import handleMovement from './movement';
 import { connect } from 'react-redux';
-import { Sprite } from '../shared/components/sprite';
+import { Sprite } from '../shared/components/sprite/sprite';
 
 const mapStateToProps = (state) => ({
   ...state.player,

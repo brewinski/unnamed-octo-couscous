@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { SPRITE_SIZE } from '../config/constansts';
 
 import './map.css';
@@ -13,6 +12,8 @@ const getTileSprite = (type) => {
       return 'rock';
     case 6:
       return 'tree';
+    default:
+      return 'grass';
   }
 }
 

@@ -1,8 +1,8 @@
-import player_walk from '../player/person_0.svg';
+import player_walk from '../data/players/EMMY-SHEET.png';
 
-export const SPRITE_SIZE = 124;
+export const SPRITE_SIZE = 32;
 // time between movement in ms.
-export const PLAYER_MOVEMENT_SPEED = 350;
+export const PLAYER_MOVEMENT_SPEED = 300;
 
 export const PLAYER_SPRITE = player_walk;
  

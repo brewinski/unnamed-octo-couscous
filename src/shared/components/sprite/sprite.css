@@ -1,0 +1,16 @@
+@keyframes walkFirst {
+  100% { background-position-x: 128px; }
+}
+
+@keyframes walkSecond {
+  100% { background-position-x: 128px; }
+}
+
+
+.first {
+  animation-name: walkFirst;
+}
+
+.second {
+  animation-name: walkSecond;
+}

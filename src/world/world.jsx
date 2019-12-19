@@ -36,7 +36,7 @@ const World = setupMap(({position}) => (
     height: '600px',
     width: '1000px',
     overflow: 'hidden',
-    backgroundColor: 'black'
+    backgroundColor: '#123415'
   }}>
     <div style={{
       height: '100%',
