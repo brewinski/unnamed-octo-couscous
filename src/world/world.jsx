@@ -6,6 +6,7 @@ import { Player } from '../player/player';
 import { tiles } from '../data/maps/1';
 import { store } from '../config/store';
 import { SPRITE_SIZE, PLAYER_MOVEMENT_SPEED } from '../config/constansts';
+import { NpcPositioner } from '../npc/npc';
 
 
 // TODO decouple world from viewportal.
@@ -49,6 +50,7 @@ const World = setupMap(({position}) => (
     }}>
       <Player />
       <Map />
+      <NpcPositioner />
     </div>
   </div>
 ));

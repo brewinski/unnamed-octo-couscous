@@ -49,8 +49,8 @@ const MapBlock = ({tiles, size}) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  ...state.map,
+const mapStateToProps = ({map}) => ({
+  ...map,
 });
 
 const Map = connect(mapStateToProps)(MapBlock);
