@@ -4,19 +4,20 @@ import { SPRITE_SIZE, PLAYER_MOVEMENT_SPEED } from '../../../config/constansts';
 import './sprite.css'
 
 const Sprite = ({ position, spriteSheet, spriteLocation }) => {
+  const [x, y] = position;
   const className = useMemo(
     () => {
       const classGrid = [['first', 'second'],['second', 'first']];
-      return classGrid[(position[0]/SPRITE_SIZE) % 2][(position[1]/SPRITE_SIZE) % 2]
+      return classGrid[(x/SPRITE_SIZE) % 2][(y/SPRITE_SIZE) % 2]
     }, 
-    [position[0], position[1]]
+    [x, y]
   );
   
   return (
     <div style={{
       position: 'absolute',
-      top: position[1] - (SPRITE_SIZE / 3.5),
-      left: position[0],
+      top: y - (SPRITE_SIZE / 3.5),
+      left: x,
       width: `${SPRITE_SIZE}px`,
       height: `${SPRITE_SIZE}px`,
       background: `url('${spriteSheet}')`,
