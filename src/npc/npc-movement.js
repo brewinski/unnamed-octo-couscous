@@ -75,7 +75,7 @@ const directionMap = {
 }
 
 const getUpdatedNpc = ({position, direction}) => {
-  const newDirection = direction;
+  // const newDirection = direction;
   const newPosition = getNewPosition(position, direction);
   const updatedPosition = observeBoundaries(newPosition) && observeImpassable(newPosition) && observeNpcImpassable(newPosition) ?
     newPosition : position;
