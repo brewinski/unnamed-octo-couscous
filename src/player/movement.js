@@ -19,6 +19,18 @@ const observeImpassable = (newPos) => {
   return nextTile < 5; 
 }
 
+const observeNpcImpassable = (newPosition) => {
+  const npcList = store.getState().npcs.npcList;
+  const y = newPosition[1] / SPRITE_SIZE;
+  const x = newPosition[0] / SPRITE_SIZE;
+  
+  return !npcList.some(({position}) => {
+    const npcY = position[1] / SPRITE_SIZE;
+    const npcX = position[0] / SPRITE_SIZE;
+    return y === npcY && x === npcX;
+  });
+}
+
 const getNewPosition = (oldPos, direction) => {
   switch (direction) {
     case 'WEST':
@@ -63,7 +75,9 @@ const directionMove = (newPos, direction) => {
 const attemptMove = (direction) => {
   const oldPos = store.getState().player.position;
   const newPos = getNewPosition(oldPos, direction);
-  const updatedPosition = observeBoundaries(newPos) && observeImpassable(newPos) ?
+  const updatedPosition = observeBoundaries(newPos) 
+    && observeImpassable(newPos) 
+    && observeNpcImpassable(newPos) ?
     newPos : oldPos;
   directionMove(updatedPosition, direction);
 }

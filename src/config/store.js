@@ -1,9 +1,12 @@
 import { createStore, combineReducers } from 'redux';
-import { playerReducer } from '../player/reducer';
-import { mapReducer } from '../map/reducer';
+import { playerReducer } from '../player/player-reducer';
+import { mapReducer } from '../map/map-reducer';
+import { npcReducer } from '../npc/npc-reducer';
+
 
 const rootReducer = combineReducers({
   player: playerReducer,
+  npcs: npcReducer,
   map: mapReducer,
 });
 
