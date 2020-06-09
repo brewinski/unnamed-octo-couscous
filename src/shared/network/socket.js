@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-const socket = io('http://localhost:3001', {
+import { url } from '../../config/constansts';
+const socket = io(url[process.env.NODE_ENV] || url.dev, {
     reconnection: true
 });
 

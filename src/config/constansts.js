@@ -20,3 +20,8 @@ export const MOVEMENT_KEY_MAP = {
   39: 'EAST', // right arrow key
   40: 'SOUTH' // down arrow key
 }
+
+export const url = {
+  dev: 'http://localhost:3001',
+  production: 'https://unnamed-octo.herokuapp.com/'
+}
