@@ -55,11 +55,8 @@ const World = setupMap(({position}) => (
   </div>
 ));
 
-const mapStateToProps = (state) => {
-  return {
-    ...state.player,
-  }
-}
+const mapStateToProps = (state) => ({...state.player});
+
 
 const WorldTest = connect(mapStateToProps)(World); 
 
