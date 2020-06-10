@@ -15,7 +15,7 @@ app.use(express.static(`build`));
 /**
  * ghetto implementation of tracking player locations
  */
-let players = [];
+const players = [];
 
 io.on('connection', socket => {
     console.log('Client with socket ID: ' + socket.client.id);
@@ -28,7 +28,7 @@ io.on('connection', socket => {
 
     socket.on('disconnect', () => {
         console.log('removing', socket.client.id);
-        players = players.splice(
+        players.splice(
             players.findIndex(player => player.id === socket.client.id),
             1
         );
