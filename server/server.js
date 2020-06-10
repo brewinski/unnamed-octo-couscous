@@ -5,7 +5,10 @@ const express = require('express');
 const app = express();
 const http = require('http')
 const server = http.createServer(app);
-const io = require('socket.io').listen(server);
+const customParser = require('socket.io-msgpack-parser');
+const io = require('socket.io').listen(server, {
+    parser: customParser
+});
 
 app.use(express.static(`build`));
 
