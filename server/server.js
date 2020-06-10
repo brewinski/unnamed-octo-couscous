@@ -35,6 +35,7 @@ io.on('connection', socket => {
     });
 });
 
+// every 5ms we broadcast player locations
 setInterval(() => {
     io.emit('playerLocations', players);
 }, 5);
