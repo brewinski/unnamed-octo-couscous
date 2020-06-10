@@ -37,7 +37,7 @@ io.on('connection', socket => {
 
 setInterval(() => {
     io.emit('playerLocations', players);
-}, 20);
+}, 5);
 
 const trackPlayerLocations = (state, id) => {
     const playerIndex = players.findIndex(player => player.id === id);
