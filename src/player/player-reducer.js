@@ -1,4 +1,5 @@
-import { PLAYER_SPRITE } from '../config/constansts'; 
+import { PLAYER_SPRITE } from '../config/constansts';
+import { socket } from '../shared/network/socket';
 
 const initialState = {
   position: [0, 0],
@@ -10,6 +11,10 @@ const initialState = {
 const playerReducer = (state = initialState, action) => {
   switch(action.type) {
     case 'MOVE_PLAYER':
+      updatePlayerLocationOnTheServer({
+        ...state,
+        ...action.payload,
+      });
       return {
         ...state,
         ...action.payload,
@@ -18,6 +23,10 @@ const playerReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const updatePlayerLocationOnTheServer = (state) => {
+  socket.emit('playerMoved', state);
+}
 
 export {
   playerReducer

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { handleNpcMovement } from './npc-movement';
+import { handleMovement } from './remotePlayerMovement';
 
 import { Sprite } from '../shared/components/sprite/sprite';
 
@@ -14,7 +15,7 @@ const mapStateToProps = (state) => ({
   ...state.npcs
 });
 
-const NpcPositioner = connect(mapStateToProps)(handleNpcMovement(NpcGroup));
+const NpcPositioner = connect(mapStateToProps)(handleMovement(NpcGroup));
 
 export {
   NpcPositioner

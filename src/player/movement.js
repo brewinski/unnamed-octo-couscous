@@ -89,7 +89,7 @@ const handleKeyDown = (keyCode, e) => {
     e.preventDefault();
     return attemptMove(moveDirection);
   }
-  return console.log(keyCode);
+  return;
 }
 
 const enoughTimePassedForMovement = (lastMovementTime) => {
