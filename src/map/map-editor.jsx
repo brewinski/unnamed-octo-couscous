@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { store } from '../config/store';
 import { SPRITE_SIZE } from '../config/constansts';
 
 
 
-const toggleWall = (tiles, size, x, y) => {
+const toggleWall = (tiles, size, x, y, type) => {
 
-    tiles[y][x] = tiles[y][x] === 0 ? 5 : 0;
+    tiles[y][x] = tiles[y][x] === type ? 0 : type;
 
     store.dispatch({
         type: 'ADD_TILES',
@@ -48,22 +48,31 @@ const MapCoordinatesEditor = ({tiles, size}) => {
     const [width, setWidth] = useState(size.width / SPRITE_SIZE);
     const [height, setHeight] = useState(size.height / SPRITE_SIZE);
     const [visible, setVisible] = useState(false);
+    const [object, setObject] = useState(5);
 
 
     return <ul style={{
         position: "fixed",
         top: 10,
         left: 10,
-        color: 'white'
+        color: 'white',
+        fontSize: 10
     }}>
-        <li><input type="checkbox" onClick={() => setVisible(!visible)} value={visible}/></li>
-        <li><span>width:</span><input onChange={e => setWidth(e.currentTarget.value)} value={width} onBlur={() =>recreateMapArrays(width, height)} /> <span>height:</span><input onChange={e => setHeight(e.currentTarget.value)} value={height} onBlur={() =>recreateMapArrays(width, height)} /></li>
+        <li><span>Map Editor:</span><input type="checkbox" onClick={() => setVisible(!visible)} value={visible}/></li>
+        <li><span>Placement type:</span>
+            <select value={object} onChange={e => setObject(e.currentTarget.value)}>
+                <option value={5}>Wall</option>
+                <option value={1}>Spawn</option>
+            </select>
+        </li>
+        <li><span>width:</span><input onChange={e => setWidth(e.currentTarget.value)} value={width} onBlur={() =>recreateMapArrays(width, height)} /> </li>
+        <li><span>height:</span><input onChange={e => setHeight(e.currentTarget.value)} value={height} onBlur={() =>recreateMapArrays(width, height)} /></li>
         {tiles.map((row, y) =>  {
             if (!visible) {
                 return;
             }
             return <li>[
-                {row.map((t, x) => <span style={{color: t === 0 ? 'white':'red' }} onClick={() => toggleWall(tiles, size, x,y)}>{t},</span>)}
+                {row.map((t, x) => <span style={{color: t === 0 ? 'white':'red' }} onClick={() => toggleWall(tiles, size, x,y, object)}>{t},</span>)}
             ],</li>
         })}
     </ul>
