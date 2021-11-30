@@ -19,12 +19,12 @@ const players = [];
 
 io.on('connection', socket => {
     console.log('Client with socket ID: ' + socket.client.id);
-    socket.emit('playerLocations', players); // this may be better as socket so we only tell the client. Not existing players.
+    io.emit('playerLocations', players); // this may be better as socket so we only tell the client. Not existing players.
 
     socket.on('playerMoved', (data) => {
         console.log(socket.client.id, 'has moved');
         trackPlayerLocations(data, socket.client.id);
-        socket.emit('playerLocations', players);
+        io.emit('playerLocations', players);
     });
 
     socket.on('disconnect', () => {
@@ -33,7 +33,7 @@ io.on('connection', socket => {
             players.findIndex(player => player.id === socket.client.id),
             1
         );
-        socket.emit('playerLocations', players);
+        io.emit('playerLocations', players);
     });
 });
 
