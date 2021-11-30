@@ -45,7 +45,7 @@ const ReactJoystick = () => {
     );
     
 
-    return <div  style={{position: 'fixed', bottom: 20, left: 15, opacity: 0.5}}>
+    return <div  style={{position: 'fixed', bottom: 20, left: 15, opacity: 0.5, touchAction: 'none',}}>
         <Joystick  size={100} baseColor="red" stickColor="blue" move={handleMove} stop={handleStop}></Joystick>
     </div>
 }
