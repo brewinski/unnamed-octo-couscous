@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Map } from '../map/map';
 import { Player } from '../player/player';
 import {MapEditor} from '../map/map-editor';
+import { ReactJoystick } from '../controls/joystick';
 
 import { tiles } from '../data/maps/1';
 import { store } from '../config/store';
@@ -33,10 +34,10 @@ const setupMap = (world) => {
 
 const World = setupMap(({position}) => (
   <div style={{
-    margin: '10px auto',
+    margin: '0px auto',
     position: 'relative',
-    height: '600px',
-    width: '1000px',
+    height: '100vh',
+    width: '100vw',
     overflow: 'hidden',
     backgroundColor: '#002000'
   }}>
@@ -44,8 +45,8 @@ const World = setupMap(({position}) => (
       height: '100%',
       width: '100%',
       position: "absolute",
-      top: (300 - position[1]) - (SPRITE_SIZE / 2),
-      left: (500 - position[0]) - (SPRITE_SIZE / 2),
+      top: ((window.innerHeight / 2) - position[1]) - (SPRITE_SIZE / 2),
+      left: ((window.innerWidth / 2) - position[0]) - (SPRITE_SIZE / 2),
       transition: `top ${PLAYER_MOVEMENT_SPEED}ms linear,
                    left ${PLAYER_MOVEMENT_SPEED}ms linear`,
     }}>
@@ -53,6 +54,7 @@ const World = setupMap(({position}) => (
       <Map />
       <NpcPositioner />
       <MapEditor />
+      <ReactJoystick />
     </div>
   </div>
 ));
