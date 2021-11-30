@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SPRITE_SIZE } from '../config/constansts';
+import { SPRITE_SIZE, CURRENT_WORLD } from '../config/constansts';
 
 import './map.css';
 
@@ -42,6 +42,9 @@ const MapBlock = ({tiles, size}) => (
     style={{
       width: `${size.width}px`,
       height: `${size.height}px`,
+      background: `url(${CURRENT_WORLD})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
     }}>
     {
       tiles.map(row => <MapRow tiles={row} />)

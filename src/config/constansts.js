@@ -1,6 +1,7 @@
 import EMMY from '../data/players/EMMY-SHEET.png';
 import HANK from '../data/players/HANK-2-SHEET.png';
 import JESSIE from '../data/players/PATTY-SHEET.png';
+import WORLD from '../data/maps/1/town.png'
 
 export const PLAYER_SPRITE_MAP = {
   emmy: EMMY,
@@ -20,6 +21,8 @@ export const MOVEMENT_KEY_MAP = {
   39: 'EAST', // right arrow key
   40: 'SOUTH' // down arrow key
 }
+
+export const CURRENT_WORLD = WORLD;
 
 export const url = {
   dev: 'http://localhost:3001',

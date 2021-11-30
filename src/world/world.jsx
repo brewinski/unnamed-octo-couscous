@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Map } from '../map/map';
 import { Player } from '../player/player';
+import {MapEditor} from '../map/map-editor';
 
 import { tiles } from '../data/maps/1';
 import { store } from '../config/store';
@@ -37,7 +38,7 @@ const World = setupMap(({position}) => (
     height: '600px',
     width: '1000px',
     overflow: 'hidden',
-    backgroundColor: '#123415'
+    backgroundColor: '#002000'
   }}>
     <div style={{
       height: '100%',
@@ -51,6 +52,7 @@ const World = setupMap(({position}) => (
       <Player />
       <Map />
       <NpcPositioner />
+      <MapEditor />
     </div>
   </div>
 ));

@@ -1,14 +1,16 @@
 .tile {
   display: inline-flex;
-  background-color: green;
+  /* background-color: #2D882D; */
 }
 
 .grass {
-  background-color: green;
+
+  /* background-color: #2D882D; */
 }
 
 .rock {
-  background-image: url('/tiles/rock.png');
+  /* background: lightgray;
+  opacity: 0.5 */
 }
 
 .tree {
