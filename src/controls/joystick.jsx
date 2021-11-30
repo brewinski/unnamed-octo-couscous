@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Joystick } from 'react-joystick-component';
 
+import './joystick.css'
 
 
 const ReactJoystick = () => {
@@ -36,7 +37,7 @@ const ReactJoystick = () => {
         }));
     }
 
-    return <div  style={{position: 'fixed', bottom: 20, left: 15, opacity: 0.5, touchAction: 'none',}}>
+    return <div style={{position: 'fixed', bottom: 20, left: 15, opacity: 0.5, touchAction: 'none',}}>
         <Joystick  size={100} baseColor="grey" stickColor="black" move={handleMove} stop={handleStop}></Joystick>
     </div>
 }
