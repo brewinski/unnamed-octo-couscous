@@ -18,8 +18,7 @@ const toggleWall = (tiles, size, x, y, type) => {
       });
     
 }
-
-const recreateMapArrays = (height, width) => {
+const recreateMapArrays = (width, height) => {
     const tiles = []
 
     for(let i = 0; i < height; i++) {
