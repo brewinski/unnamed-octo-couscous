@@ -24,6 +24,7 @@ io.on('connection', socket => {
     socket.on('playerMoved', (data) => {
         console.log(socket.client.id, 'has moved');
         trackPlayerLocations(data, socket.client.id);
+        socket.emit('playerLocations', players);
     });
 
     socket.on('disconnect', () => {
@@ -32,13 +33,14 @@ io.on('connection', socket => {
             players.findIndex(player => player.id === socket.client.id),
             1
         );
+        socket.emit('playerLocations', players);
     });
 });
 
-// every 5ms we broadcast player locations
-setInterval(() => {
-    io.emit('playerLocations', players);
-}, 5);
+// // every 5ms we broadcast player locations
+// setInterval(() => {
+//     io.emit('playerLocations', players);
+// }, 5);
 
 const trackPlayerLocations = (state, id) => {
     const playerIndex = players.findIndex(player => player.id === id);
