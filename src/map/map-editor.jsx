@@ -3,7 +3,16 @@ import { connect } from 'react-redux';
 import { store } from '../config/store';
 import { SPRITE_SIZE } from '../config/constansts';
 
-
+const getColor = (number) => {
+    switch(number) {
+        case 1:
+            return 'purple';
+        case 5: 
+            return 'black';
+        case 0:
+            return 'none';
+    }
+}
 
 const toggleWall = (tiles, size, x, y, type) => {
 
@@ -60,14 +69,26 @@ const MapCoordinatesEditor = ({tiles, size}) => {
             zIndex: 100
         }}>
             <li><span>Map Editor:</span><input type="checkbox" onClick={() => setVisible(!visible)} value={visible}/></li>
-            <li><span>Placement type:</span>
+            <li>
+                <span>Placement type:</span>
                 <select value={object} onChange={e => setObject(e.currentTarget.value)}>
                     <option value={5}>Wall</option>
                     <option value={1}>Spawn</option>
                 </select>
             </li>
-            <li><span>width:</span><input onChange={e => setWidth(e.currentTarget.value)} value={width} onBlur={() =>recreateMapArrays(width, height)} /> </li>
-            <li><span>height:</span><input onChange={e => setHeight(e.currentTarget.value)} value={height} onBlur={() =>recreateMapArrays(width, height)} /></li>
+            <li>
+                <span>width:</span>
+                <input 
+                    onChange={e => setWidth(e.currentTarget.value)} 
+                    value={width} 
+                    onBlur={() =>recreateMapArrays(width, height)} /> 
+            </li>
+            <li>
+                <span>height:</span>
+                <input onChange={e => setHeight(e.currentTarget.value)} 
+                value={height} 
+                onBlur={() =>recreateMapArrays(width, height)} />
+            </li>
         </ul>
         <div style={{
             width: `${size.width}px`,
@@ -81,7 +102,19 @@ const MapCoordinatesEditor = ({tiles, size}) => {
                     return;
                 }
                 return <div style={{display: 'flex'}}>
-                    {row.map((t, x) => <div style={{color: t === 0 ? 'white':'red', height: SPRITE_SIZE, width: SPRITE_SIZE, textAlign: 'center' }} onClick={() => toggleWall(tiles, size, x,y, object)}>{t}</div>)}
+                    {row.map((t, x) => 
+                        <div 
+                            style={{
+                                background: getColor(t),
+                                opacity: 0.5,
+                                height: SPRITE_SIZE, 
+                                width: SPRITE_SIZE, 
+                                textAlign: 'center',
+                                border: '1px dotted black',
+                                boxSizing: 'border-box'
+                            }} 
+                            onClick={() => toggleWall(tiles, size, x,y, object)}>
+                        </div>)}
                 </div>
             })}
         </div>
